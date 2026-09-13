@@ -60,7 +60,7 @@ feature_cols = [
 
 
 
-# Load the saved CT0 model pickle object
+# Load the saved Clock night model pickle object
 
 
 pickle_file = ("/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/day_vs_night/non_clock_night_model.pkl")
@@ -92,7 +92,7 @@ ct0_data = pd.read_csv(
 print("Number of clock test genes:", len(ct0_data))
 
 
-# Prepare CT0 features of test genes
+# Prepare features of test genes
 
 
 X_ct0_genes = ct0_data[
@@ -107,7 +107,7 @@ X_ct0_genes_scaled = scalar_X.transform(
 
 
 
-# Predict CT0 RNA expression
+# Predict RNA expression
 
 
 y_pred_log = model.predict(
@@ -122,7 +122,7 @@ y_pred_original = np.expm1(
 
 
 
-# Actual CT0 RNA expression
+# Actual RNA expression
 
 y_actual_original = ct0_data[[
     "ct12_rpkm_cm_avg", "ct16_rpkm_cm_avg", "ct20_rpkm_cm_avg"]
