@@ -63,7 +63,7 @@ feature_cols = [
 # Load the saved Clock night model pickle object
 
 
-pickle_file = ("/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/day_vs_night/clock_night_model.pkl")
+pickle_file = ("/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/day_vs_night/non_clock_night_model.pkl")
 
 with open(pickle_file, "rb") as file:
     pickle_object = pickle.load(file)
@@ -72,7 +72,7 @@ model = pickle_object["model"]
 scalar_X = pickle_object["scaler_X"]
 feature_names = pickle_object["feature_names"]
 
-print("clock night model loaded successfully")
+print("non clock night model loaded successfully")
 
 # print("\nTraining 10-fold CV Results")
 # print("---------------------------")
@@ -84,7 +84,7 @@ print("clock night model loaded successfully")
 
 
 ct0_data = pd.read_csv(
-    "/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/data_sets/non_clock_genes_1500.csv",
+    "/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/data_sets/clock_genes_1500.csv",
     na_values=["NA", "null", "?", " "],
     engine="python"
 )
