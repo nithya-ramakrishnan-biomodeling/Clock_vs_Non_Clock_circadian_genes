@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
     data_all = pd.read_csv(
         "/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/data_sets/"
-        "clock_genes_1500.csv",
+        "non_clock_genes_1500.csv",
         na_values=["NA", "null", "?", " "],
         engine="python"
     )
@@ -94,7 +94,7 @@ if __name__ == "__main__":
 
     data_ct0 = pd.read_csv(
         "/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/data_sets/"
-        "clock_genes_150_test_set.csv",
+        "non_clock_genes_150_test.csv",
         na_values=["NA", "null", "?", " "],
         engine="python"
     )
@@ -263,7 +263,7 @@ if __name__ == "__main__":
 
     pickle_file = (
         "/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/day_vs_night/"
-        "clock_night_model.pkl"
+        "non_clock_night_model_with_1500.pkl"
     )
 
     with open(pickle_file, "wb") as file:
