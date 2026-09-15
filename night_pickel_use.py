@@ -15,55 +15,55 @@ from sklearn.metrics import (
 
 
 feature_cols = [
-    "h3.3_gene_body_ct12",
-    "h3.3_promoters_ct12",
-    "h3k27ac_ct12",
-    "h3k9ac_ct12",
-    "h3k4me3_ct12",
-    "h3k4me1_ct12",
-    "h3k36me3_gene_body_ct12",
-    "h3k79me2_gene_body_ct12",
-    "per1_promoters_ct12",
-    "per2_promoters_ct12",
-    "rnapol2_promoter_ct12",
-    "per1_gene_body_ct12",
-    "per2_gene_body_ct12",
+    "h3.3_gene_body_ct0",
+    "h3.3_promoters_ct0",
+    "h3k27ac_ct0",
+    "h3k9ac_ct0",
+    "h3k4me3_ct0",
+    "h3k4me1_ct0",
+    "h3k36me3_gene_body_ct0",
+    "h3k79me2_gene_body_ct0",
+    "per1_promoters_ct0",
+    "per2_promoters_ct0",
+    "rnapol2_promoter_ct0",
+    "per1_gene_body_ct0",
+    "per2_gene_body_ct0",
 
-    "h3.3_gene_body_ct16",
-    "h3.3_promoters_ct16",
-    "h3k27ac_ct16",
-    "h3k9ac_ct16",
-    "h3k4me3_ct16",
-    "h3k4me1_ct16",
-    "h3k36me3_gene_body_ct16",
-    "h3k79me2_gene_body_ct16",
-    "per1_promoters_ct16",
-    "per2_promoters_ct16",
-    "rnapol2_promoter_ct16",
-    "per1_gene_body_ct16",
-    "per2_gene_body_ct16",
+    "h3.3_gene_body_ct4",
+    "h3.3_promoters_ct4",
+    "h3k27ac_ct4",
+    "h3k9ac_ct4",
+    "h3k4me3_ct4",
+    "h3k4me1_ct4",
+    "h3k36me3_gene_body_ct4",
+    "h3k79me2_gene_body_ct4",
+    "per1_promoters_ct4",
+    "per2_promoters_ct4",
+    "rnapol2_promoter_ct4",
+    "per1_gene_body_ct4",
+    "per2_gene_body_ct4",
 
-    "h3.3_gene_body_ct20",
-    "h3.3_promoters_ct20",
-    "h3k27ac_ct20",
-    "h3k9ac_ct20",
-    "h3k4me3_ct20",
-    "h3k4me1_ct20",
-    "h3k36me3_gene_body_ct20",
-    "h3k79me2_gene_body_ct20",
-    "per1_promoters_ct20",
-    "per2_promoters_ct20",
-    "rnapol2_promoter_ct20",
-    "per1_gene_body_ct20",
-    "per2_gene_body_ct20"
+    "h3.3_gene_body_ct8",
+    "h3.3_promoters_ct8",
+    "h3k27ac_ct8",
+    "h3k9ac_ct8",
+    "h3k4me3_ct8",
+    "h3k4me1_ct8",
+    "h3k36me3_gene_body_ct8",
+    "h3k79me2_gene_body_ct8",
+    "per1_promoters_ct8",
+    "per2_promoters_ct8",
+    "rnapol2_promoter_ct8",
+    "per1_gene_body_ct8",
+    "per2_gene_body_ct8"
 ]
 
 
 
-# Load the saved Clock night model pickle object
+# Load the saved CT0 model pickle object
 
 
-pickle_file = ("/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/day_vs_night/non_clock_night_model.pkl")
+pickle_file = ("/home/ibab/Downloads/mrop/codes/cross_testing_clock_vs_non_clock/day_vs_night/non_clock_night_model_with_1500.pkl")
 
 with open(pickle_file, "rb") as file:
     pickle_object = pickle.load(file)
@@ -92,7 +92,7 @@ ct0_data = pd.read_csv(
 print("Number of clock test genes:", len(ct0_data))
 
 
-# Prepare features of test genes
+# Prepare CT0 features of test genes
 
 
 X_ct0_genes = ct0_data[
@@ -107,7 +107,7 @@ X_ct0_genes_scaled = scalar_X.transform(
 
 
 
-# Predict RNA expression
+# Predict CT0 RNA expression
 
 
 y_pred_log = model.predict(
@@ -122,10 +122,10 @@ y_pred_original = np.expm1(
 
 
 
-# Actual RNA expression
+# Actual CT0 RNA expression
 
 y_actual_original = ct0_data[[
-    "ct12_rpkm_cm_avg", "ct16_rpkm_cm_avg", "ct20_rpkm_cm_avg"]
+    "ct0_rpkm_cm_avg", "ct4_rpkm_cm_avg", "ct8_rpkm_cm_avg"]
 ].values
 
 y_actual_log = np.log1p(
@@ -175,9 +175,9 @@ r2_ct20 = r2_score(
 )
 
 print("\nCross-testing on clock genes")
-print("CT12 R²:", r2_ct12)
-print("CT16 R²:", r2_ct16)
-print("CT20 R²:", r2_ct20)
+print("CT0 R²:", r2_ct12)
+print("CT4 R²:", r2_ct16)
+print("CT8 R²:", r2_ct20)
 print("Overall R²:", r2_log)
 
 
@@ -197,9 +197,9 @@ mae_ct20 = mean_absolute_error(
     y_pred_log[:, 2]
 )
 
-print("CT12 MAE:", mae_ct12)
-print("CT16 MAE:", mae_ct16)
-print("CT20 MAE:", mae_ct20)
+print("CT0 MAE:", mae_ct12)
+print("CT4 MAE:", mae_ct16)
+print("CT8 MAE:", mae_ct20)
 print("Overall MAE²:", mae_log)
 
 
